@@ -61,7 +61,8 @@
             }
 
             #json-list {
-                background: url({{ $background }});
+                /* background: url({{ $background }}); */
+                background: {{ $background }};
                 width: fit-content;
                 padding: 2em;
                 margin: 0;

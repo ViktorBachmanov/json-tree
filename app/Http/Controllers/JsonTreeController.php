@@ -18,11 +18,23 @@ class JsonTreeController extends Controller
     {
         $depth = $request->depth;
 
-        $background = $request->background;
-        $urlScheme = parse_url($background, PHP_URL_SCHEME);
-        if(!$urlScheme) {
-            $background = 'https://' . $background;
-        }
+        $bgType = $request->bgType;
+
+        $background = $request[$bgType];
+
+        switch($bgType) {
+            case 'bgImage':
+                $urlScheme = parse_url($background, PHP_URL_SCHEME);
+                if(!$urlScheme) {
+                    $background = 'https://' . $background;
+                }
+                $background = "url($background)";
+                break;
+            case 'bgColor':
+                $background = "rgb$background";
+                break;
+        }        
+        
 
         $jsonTree = new JsonTree($depth);
 

@@ -25,22 +25,57 @@
                 margin: 1em;
             }
 
-            input[name="background"] {
+            input[type="radio"] {
+                margin-right: 0;
+            }
+
+            input[name="bgImage"] {
                 width: 50em;
             }
 
             button {
                 margin: 1em;
             }
+
+            div.bg {
+                display: flex;
+            }
         </style>
     </head>
     <body class="antialiased">
         <form action="/createTree">
             @csrf
-            <input name='background' value='https://365psd.ru/images/backgrounds/bg-light-4807.png'>
+            <div class='bg'>
+                <input value='bgImage' type='radio' name='bgType'>
+                <input name='bgImage' value='https://365psd.ru/images/backgrounds/bg-light-4807.png'>
+            </div>
+            <div class='bg'>
+                <input value='bgColor' type='radio' name='bgType'>
+                <input name='bgColor' value='(100, 125, 135)'>
+            </div>
             <input name='depth' placeholder='depth'>
             <button formmethod="GET">GET</button>
             <button formmethod="POST">POST</button>
         </form>
     </body>
+
+    <script>
+        const radioImage = document.querySelector('input[value="bgImage"]');
+        const radioColor = document.querySelector('input[value="bgColor"]');
+        const inputImage = document.querySelector('input[name="bgImage"]');
+        const inputColor = document.querySelector('input[name="bgColor"]');
+        radioImage.addEventListener('change', (e) => {
+            if(e.target.checked) {
+                inputColor.setAttribute('disabled', 'disabled');
+                inputImage.removeAttribute('disabled');
+            } 
+        })
+        radioColor.addEventListener('change', (e) => {
+            if(e.target.checked) {
+                inputColor.removeAttribute('disabled');
+                inputImage.setAttribute('disabled', 'disabled');
+            } 
+        })
+        radioImage.click();
+    </script>
 </html>
