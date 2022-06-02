@@ -17,7 +17,7 @@ class JsonTree {
   }
 
   public function process() {
-    echo "<ul>";
+    echo "<ul id='json-list'>";
 
     foreach($this->sourceArray as $key => $value) {
       if(is_array($value)) {

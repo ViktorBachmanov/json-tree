@@ -28,7 +28,7 @@
 
             li {
                 list-style-type: none;
-                margin-left: 2em;
+                /* margin-left: 2em; */
             }
 
             .marker {
@@ -54,6 +54,17 @@
 
             .leafLabel .marker {
                 background: no-repeat 50% 50% / 40% url({{ asset('pics/circle.svg') }});
+            }
+
+            ul {
+                margin-left: 1em;
+            }
+
+            #json-list {
+                background: url({{ $background }});
+                width: fit-content;
+                padding: 2em;
+                margin: 0;
             }
 
         </style>

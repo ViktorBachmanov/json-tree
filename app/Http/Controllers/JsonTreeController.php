@@ -18,9 +18,17 @@ class JsonTreeController extends Controller
     {
         $depth = $request->depth;
 
+        $background = $request->background;
+        $urlScheme = parse_url($background, PHP_URL_SCHEME);
+        if(!$urlScheme) {
+            $background = 'https://' . $background;
+        }
+
         $jsonTree = new JsonTree($depth);
 
-        return view('list', ['tree' => $jsonTree]);
+        return view('list',
+            ['tree' => $jsonTree,
+            'background' => $background]);
     }
     
 }

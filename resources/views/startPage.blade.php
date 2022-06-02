@@ -21,12 +21,23 @@
 
             input {
                 border: 1px solid black;
+                display: block;
+                margin: 1em;
+            }
+
+            input[name="background"] {
+                width: 50em;
+            }
+
+            button {
+                margin: 1em;
             }
         </style>
     </head>
     <body class="antialiased">
         <form action="/createTree">
             @csrf
+            <input name='background' value='https://365psd.ru/images/backgrounds/bg-light-4807.png'>
             <input name='depth' placeholder='depth'>
             <button formmethod="GET">GET</button>
             <button formmethod="POST">POST</button>
