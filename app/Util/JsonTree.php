@@ -10,7 +10,11 @@ class JsonTree {
   private int $depth;
 
   public function __construct(string $depth) {
-    $this->depth = (int) $depth;
+    if(strtoupper($depth) === 'MAX') {
+      $this->depth = PHP_INT_MAX;
+    } else {
+      $this->depth = (int) $depth;
+    }
 
     $this->sourceArray = json_decode(Storage::disk('local')->get('source.json'), true);
 
