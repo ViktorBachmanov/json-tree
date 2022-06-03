@@ -33,6 +33,7 @@
 
             input[type="radio"] {
                 margin-right: 0;
+                cursor: pointer;
             }
 
             input[name="{{ $IMG }}"] {
@@ -151,7 +152,7 @@
                 jsonStr = await readFile(file);
             }            
 
-            const bgType = radioImage.value;
+            const bgType = radioImage.checked ? '{{ $IMG }}' : '{{ $RGB }}';
 
             const depth = document.querySelector('input[name="depth"]').value;
 
