@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Util\JsonTree;
 
@@ -16,11 +17,21 @@ class JsonTreeController extends Controller
      */
     public function create(Request $request)
     {
-        $depth = $request->depth;
+        $method = $request->method();
+ 
+        if ($request->isMethod('get')) {
+            $fileContent = $request['json-file'];
+        } else {
+            $fileContent = $request->file('json-file')->get();
+        }
+
+        $sourceObject = json_decode($fileContent, false);
 
         $bgType = $request->bgType;
 
         $background = $request[$bgType];
+
+        $depth = $request->depth;
 
         $IMG = config('constants.bgTypes.img');
         $RGB = config('constants.bgTypes.rgb');
@@ -39,7 +50,7 @@ class JsonTreeController extends Controller
         }        
         
 
-        $jsonTree = new JsonTree($depth);
+        $jsonTree = new JsonTree($sourceObject, $depth);
 
         return view('list',
             ['tree' => $jsonTree,

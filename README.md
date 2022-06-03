@@ -44,37 +44,3 @@ root /any_path/json-tree/public;
 
 Name: Ivan<br>
 Password: 123
-
-## Json file
-
-Исходный json-file должен находиться по адресу storage/app/source.json
-
-Пример:
-
-```
-{
-    "leaf-0": "firstLeaf",
-    "node-1": {
-        "leaf-1": "str-1",
-        "node-2": {
-            "leaf-1": 1,
-            "leaf-2": [0.5, "str", true],
-            "leaf-3": 8.4
-        }
-    },
-    "node-2": {
-        "leaf-1": "str-1",
-        "leaf-2": 0,
-        "leaf-3": true,
-        "node-3": {
-            "leaf-1": "str-1",
-            "leaf-2": 12.5,
-            "node-4": {
-                "leaf-1": "str-2",
-                "leaf-2": 5,
-                "leaf-3": [1, 3, "a"]
-            }
-        }
-    }
-}
-```

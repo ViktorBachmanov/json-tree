@@ -6,23 +6,24 @@ use Illuminate\Support\Facades\Storage;
 
 
 class JsonTree {
-  private object $sourceArray;
+  private object $sourceObject;
   private int $depth;
 
-  public function __construct(string $depth) {
+  public function __construct(object $sourceObject, string $depth) {
     if(strtoupper($depth) === 'MAX') {
       $this->depth = PHP_INT_MAX;
     } else {
       $this->depth = (int) $depth;
     }
 
-    $this->sourceArray = json_decode(Storage::disk('local')->get('source.json'), false);
+    //$this->sourceObject = json_decode(Storage::disk('local')->get('source.json'), false);
+    $this->sourceObject = $sourceObject;
   }
 
   public function process() {
     echo "<ul id='json-list'>";
 
-    foreach($this->sourceArray as $key => $value) {
+    foreach($this->sourceObject as $key => $value) {
       $this->processNode($key, $value, 0);
     }
 

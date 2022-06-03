@@ -41,6 +41,13 @@
 
             button {
                 margin: 1em;
+                padding: 0.5em;
+                box-shadow: 1px 1px 2px 2px gray;
+                cursor: pointer;
+            }
+
+            button:active {
+                box-shadow: 1px 1px 0 gray;
             }
 
             div.bg {
@@ -73,8 +80,13 @@
         </style>
     </head>
     <body class="antialiased">
-        <form action="/createTree">
+        <form action="/createTree" onsubmit="handleSubmit()">
             @csrf
+
+            <fieldset>
+                <legend>Json-файл</legend>
+                <input name='json-file' type="file" required>
+            </fieldset>
 
             <fieldset>
                 <legend>Фон</legend>
@@ -101,7 +113,7 @@
 
 
             <button formmethod="GET">GET</button>
-            <button formmethod="POST">POST</button>
+            <button formmethod="POST" formenctype="multipart/form-data">POST</button>
         </form>
     </body>
 
@@ -123,5 +135,45 @@
             } 
         })
         radioImage.click();
+
+
+        async function handleSubmit() {
+            if(event.submitter.formMethod === 'post') {
+                return;
+            }
+
+            event.preventDefault();
+
+            let jsonStr;
+
+            const file = document.querySelector('input[name="json-file"]').files[0];
+            if (file) {
+                jsonStr = await readFile(file);
+            }            
+
+            const bgType = radioImage.value;
+
+            const depth = document.querySelector('input[name="depth"]').value;
+
+            const uri = `/createTree?json-file=${jsonStr}&bgType=${bgType}&${inputImage.name}=${inputImage.value}&${inputColor.name}=${inputColor.value}&depth=${depth}`;
+
+            console.log('uri', uri);
+
+            location.href = encodeURI(uri);
+        }
+
+        async function readFile(file) {
+            return new Promise(resolve => {                
+                const reader = new FileReader();
+                reader.readAsText(file, "UTF-8");
+                reader.onload = function (evt) {
+                    jsonStr = evt.target.result;
+                    resolve(jsonStr);
+                };
+                reader.onerror = function (evt) {
+                    console.log('Error');
+                };                
+            });
+        }
     </script>
 </html>
