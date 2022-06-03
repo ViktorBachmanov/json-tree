@@ -22,15 +22,18 @@ class JsonTreeController extends Controller
 
         $background = $request[$bgType];
 
+        $IMG = config('constants.bgTypes.img');
+        $RGB = config('constants.bgTypes.rgb');
+
         switch($bgType) {
-            case 'bgImage':
+            case $IMG:
                 $urlScheme = parse_url($background, PHP_URL_SCHEME);
                 if(!$urlScheme) {
                     $background = 'https://' . $background;
                 }
                 $background = "url($background)";
                 break;
-            case 'bgColor':
+            case $RGB:
                 $background = "rgb$background";
                 break;
         }        
