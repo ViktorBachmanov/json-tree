@@ -51,7 +51,8 @@ Password: 123
 
 Пример:
 
-```{
+```
+{
     "leaf-0": "firstLeaf",
     "node-1": {
         "leaf-1": "value-1"
