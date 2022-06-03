@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\JsonTreeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('startPage');
+   });
+   
+   Route::get('/createTree', [JsonTreeController::class, 'create']);
+   
+   Route::post('/createTree', [JsonTreeController::class, 'create']);
+});
 
 require __DIR__.'/auth.php';
