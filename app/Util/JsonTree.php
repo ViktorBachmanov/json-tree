@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 class JsonTree {
-  private array $sourceArray;
+  private object $sourceArray;
   private int $depth;
 
   public function __construct(string $depth) {
@@ -16,7 +16,7 @@ class JsonTree {
       $this->depth = (int) $depth;
     }
 
-    $this->sourceArray = json_decode(Storage::disk('local')->get('source.json'), true);
+    $this->sourceArray = json_decode(Storage::disk('local')->get('source.json'), false);
 
   }
 
@@ -31,7 +31,7 @@ class JsonTree {
   }
 
   private function processNode(string $name, $value, int $depth) {
-    if(!is_array($value)) {
+    if(!is_object($value)) {
       $this->processLeaf($name, $value);
       return;
     }
@@ -55,6 +55,11 @@ class JsonTree {
 
   private function processLeaf(string $name, $value) {
     $type = gettype($value);
+    
+    if(is_array($value)) {
+      $value = '[' . implode(', ', $value) . ']';
+    }
+    
     echo "<li><span class='leafLabel'><div class='marker'></div>$name ($type) value: $value</span></li>";
   }
 
