@@ -20,29 +20,27 @@ class JsonTree {
     echo "<ul id='json-list'>";
 
     foreach($this->sourceArray as $key => $value) {
-      if(is_array($value)) {
-        $this->processNode($key, $value, 0);
-      } else {
-      $this->processLeaf($key, $value);
-      }
+      $this->processNode($key, $value, 0);
     }
 
     echo "</ul>";
   }
 
-  private function processNode(string $name, $node, int $depth) {
+  private function processNode(string $name, $value, int $depth) {
     $isOpen = $depth < $this->depth ? true : false;
+
+    if(!is_array($value)) {
+      $this->processLeaf($name, $value);
+      return;
+    }
+
     $state = $isOpen ? '' : 'closed';
     $contentDisplay = $isOpen ? '' : 'hidden';
     echo "<li><span class='nodeLabel $state'><div class='marker'></div>$name (Array)</span>";
     echo "<ul class='$contentDisplay'>";
 
-    foreach($node as $key => $value) {
-      if(is_array($value)) {
-        $this->processNode($key, $value, ++$depth);
-      } else {
-      $this->processLeaf($key, $value);
-      }
+    foreach($value as $key => $value) {
+      $this->processNode($key, $value, ++$depth);
     }
 
     echo "</ul>";
