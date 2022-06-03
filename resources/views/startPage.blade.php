@@ -53,7 +53,7 @@
                 <input value='bgColor' type='radio' name='bgType'>
                 <input name='bgColor' value='(100, 125, 135)'>
             </div>
-            <input name='depth' placeholder='depth'>
+            <input name='depth' placeholder='depth' required>
             <button formmethod="GET">GET</button>
             <button formmethod="POST">POST</button>
         </form>
