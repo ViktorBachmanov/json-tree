@@ -17,6 +17,7 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                padding: 2em;
             }
 
             input {
@@ -40,20 +41,63 @@
             div.bg {
                 display: flex;
             }
+
+            label {
+                display: flex;
+                align-items: center;
+                min-width: 6em;
+                cursor: pointer;
+            }
+
+            label span {
+                flex: 1 0 auto;
+                text-align: right;
+            }
+
+            /* h3 {
+                text-align: center;
+            } */
+
+            fieldset {
+                border: 1px solid black;
+                border-radius: 0.5em;
+                width: fit-content;
+                margin-bottom: 1em;
+            }
+
+            legend {
+                padding: 0 1em;
+                margin-left: 1em;
+            }
         </style>
     </head>
     <body class="antialiased">
         <form action="/createTree">
             @csrf
-            <div class='bg'>
-                <input value='bgImage' type='radio' name='bgType'>
-                <input name='bgImage' value='https://365psd.ru/images/backgrounds/bg-light-4807.png'>
-            </div>
-            <div class='bg'>
-                <input value='bgColor' type='radio' name='bgType'>
-                <input name='bgColor' value='(100, 125, 135)'>
-            </div>
-            <input name='depth' placeholder='depth' required>
+            <fieldset>
+                <legend>Фон</legend>
+                <div class='bg'>
+                    <label><span>Ссылка</span>
+                        <input value='bgImage' type='radio' name='bgType'>
+                    </label>
+                    <input name='bgImage' value='https://365psd.ru/images/backgrounds/bg-light-4807.png'>
+                    
+                </div>
+                <div class='bg'>
+                    <label><span>RGB</span>
+                        <input value='bgColor' type='radio' name='bgType'>
+                    </label>
+                    <input name='bgColor' value='(100, 125, 135)'>
+                    
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Глубина раскрытия</legend>
+                <input name='depth' placeholder='depth' required>
+            </fieldset>
+
+
             <button formmethod="GET">GET</button>
             <button formmethod="POST">POST</button>
         </form>
