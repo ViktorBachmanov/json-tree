@@ -41,7 +41,7 @@ class JsonTree {
     $isOpen = $depth <= $this->depth ? true : false;
     $state = $isOpen ? '' : 'closed';
     $contentDisplay = $isOpen ? '' : 'hidden';
-    echo "<li><span class='nodeLabel $state'><div class='marker'></div>$name (Array)</span>";
+    echo "<li><span class='nodeLabel $state'><div class='marker'></div>$name (array)</span>";
     echo "<ul class='$contentDisplay'>";
 
     foreach($value as $key => $value) {

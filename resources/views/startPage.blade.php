@@ -59,10 +59,6 @@
                 text-align: right;
             }
 
-            /* h3 {
-                text-align: center;
-            } */
-
             fieldset {
                 border: 1px solid black;
                 border-radius: 0.5em;
@@ -100,7 +96,7 @@
 
             <fieldset>
                 <legend>Глубина раскрытия</legend>
-                <input name='depth' placeholder='depth' required>
+                <input name='depth' placeholder='число / max' required>
             </fieldset>
 
 
