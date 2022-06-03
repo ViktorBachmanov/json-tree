@@ -33,6 +33,9 @@ class JsonTreeController extends Controller
 
         $depth = $request->depth;
 
+        $jsonTree = new JsonTree($sourceObject, $depth);
+
+
         $IMG = config('constants.bgTypes.img');
         $RGB = config('constants.bgTypes.rgb');
 
@@ -49,8 +52,6 @@ class JsonTreeController extends Controller
                 break;
         }        
         
-
-        $jsonTree = new JsonTree($sourceObject, $depth);
 
         return view('list',
             ['tree' => $jsonTree,
