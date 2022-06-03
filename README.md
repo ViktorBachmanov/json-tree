@@ -4,6 +4,7 @@
 
 ## Nginx
 
+```
 server {
 listen 80;
 listen [::]:80;
@@ -37,6 +38,7 @@ root /any_path/json-tree/public;
     }
 
 }
+```
 
 ## Log in
 
@@ -49,23 +51,24 @@ Password: 123
 
 Пример:
 
-{
-"leaf-0": "firstLeaf",
-"node-1": {
-"leaf-1": "value-1"
-},
-"node-2": {
-"leaf-1": "value-1",
-"leaf-2": 0,
-"leaf-3": true,
-"node-3": {
-"leaf-1": "str-1",
-"leaf-2": 12.5,
-"node-4": {
-"leaf-1": "str-2",
-"leaf-2": 5,
-"leaf-3": false
-}
-}
-}
-}
+````{
+    "leaf-0": "firstLeaf",
+    "node-1": {
+        "leaf-1": "value-1"
+    },
+    "node-2": {
+        "leaf-1": "value-1",
+        "leaf-2": 0,
+        "leaf-3": true,
+        "node-3": {
+            "leaf-1": "str-1",
+            "leaf-2": 12.5,
+            "node-4": {
+                "leaf-1": "str-2",
+                "leaf-2": 5,
+                "leaf-3": false
+            }
+        }
+    }
+}```
+````
