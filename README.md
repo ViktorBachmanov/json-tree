@@ -42,7 +42,7 @@ root /any_path/json-tree/public;
 
 ## Log in
 
-Name: Ivan
+Name: Ivan<br>
 Password: 123
 
 ## Json file
@@ -55,10 +55,15 @@ Password: 123
 {
     "leaf-0": "firstLeaf",
     "node-1": {
-        "leaf-1": "value-1"
+        "leaf-1": "str-1",
+        "node-2": {
+            "leaf-1": 1,
+            "leaf-2": [0.5, "str", true],
+            "leaf-3": 8.4
+        }
     },
     "node-2": {
-        "leaf-1": "value-1",
+        "leaf-1": "str-1",
         "leaf-2": 0,
         "leaf-3": true,
         "node-3": {
@@ -67,7 +72,7 @@ Password: 123
             "node-4": {
                 "leaf-1": "str-2",
                 "leaf-2": 5,
-                "leaf-3": false
+                "leaf-3": [1, 3, "a"]
             }
         }
     }

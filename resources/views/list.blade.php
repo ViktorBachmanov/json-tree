@@ -28,7 +28,6 @@
 
             li {
                 list-style-type: none;
-                /* margin-left: 2em; */
             }
 
             .marker {
@@ -61,7 +60,6 @@
             }
 
             #json-list {
-                /* background: url({{ $background }}); */
                 background: {{ $background }};
                 width: fit-content;
                 padding: 2em;

@@ -17,7 +17,6 @@ class JsonTree {
     }
 
     $this->sourceArray = json_decode(Storage::disk('local')->get('source.json'), false);
-
   }
 
   public function process() {
@@ -41,7 +40,7 @@ class JsonTree {
     $isOpen = $depth <= $this->depth ? true : false;
     $state = $isOpen ? '' : 'closed';
     $contentDisplay = $isOpen ? '' : 'hidden';
-    echo "<li><span class='nodeLabel $state'><div class='marker'></div>$name (array)</span>";
+    echo "<li><span class='nodeLabel $state'><div class='marker'></div>$name (object)</span>";
     echo "<ul class='$contentDisplay'>";
 
     foreach($value as $key => $value) {
