@@ -1,3 +1,5 @@
+const BG_TYPE = "bgType";
+
 export default class BgFieldset {
     _BgTypes = {};
     _bgType;
@@ -31,12 +33,18 @@ export default class BgFieldset {
         this._radioImg.addEventListener("change", this.toggleBgType);
         this._radioRgb.addEventListener("change", this.toggleBgType);
 
-        if (this._radioRgb.checked) {
+        const storageBgType = localStorage.getItem(BG_TYPE);
+        if (storageBgType === this._BgTypes.rgb) {
+            this._radioRgb.checked = true;
             this.setRgb();
         } else {
             this._radioImg.checked = true;
             this.setImg();
         }
+
+        window.addEventListener("beforeunload", () => {
+            localStorage.setItem(BG_TYPE, this._bgType);
+        });
     }
 
     toggleBgType(e) {

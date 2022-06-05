@@ -24,11 +24,7 @@
             import BgFieldset from './js/BgFieldset.js';
             import getFileUriEncoded from './js/getFileUriEncoded.js';
 
-            let bgFieldset;
-
-            window.onload = () => {
-                bgFieldset = new BgFieldset('{{ $IMG }}', '{{ $RGB }}');
-            }
+            const bgFieldset = new BgFieldset('{{ $IMG }}', '{{ $RGB }}');
 
             document.forms[0].onsubmit = async function(e) {
                 if (e.submitter.formMethod === "post") {
@@ -128,14 +124,14 @@
                 <legend>Фон</legend>
                 <div class='bg'>
                     <label><span>Ссылка</span>
-                        <input value={{ $IMG }} type='radio' name='bgType'>
+                        <input value={{ $IMG }} type='radio' name='bgType' autocomplete='off'>
                     </label>
                     <input name={{ $IMG }} value='https://365psd.ru/images/backgrounds/bg-light-4807.png'>
                     
                 </div>
                 <div class='bg'>
                     <label><span>RGB</span>
-                        <input value={{ $RGB }} type='radio' name='bgType'>
+                        <input value={{ $RGB }} type='radio' name='bgType' autocomplete='off'>
                     </label>
                     <input name={{ $RGB }} value='(100, 125, 135)'>
                     
